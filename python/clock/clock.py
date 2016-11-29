@@ -1,13 +1,15 @@
-## exercism assignment:     clock.py
-## description:
-## use:
-##
-## written by (GitHub):     cmdellinger
-## written on:              10.26.2016
-## last revised:            10.31.2016
+"""
+Exercism.io assignment - clock.py
+Written by cmdellinger
+
+Usage:
+  None
+  
+Create a 24 hour Clock class that can add or subract minutes
+"""
 
 ## ------
-## module import calls
+## import modules
 ## ------
 
 # none
@@ -22,55 +24,67 @@
 ## class definitions
 ## ------
 
-## ------
-## class:       Clock
-## purpose:     create a 24 hour clock that can add or subract minutes
-## ------
-
 class Clock:
+    """ create a 24 hour clock that can add or subract minutes """
 
-    # helper functions
-    def two_dig_str(self, x):
-        if len(str(x)) < 2:
-            return "0" + str(x)
-        return str(x)
-
-    def clock_time(self, hours, minutes):
-        set_hr = (hours + int(minutes/60))%24
+    # private functions
+    def __clock_time(self, time = []): # -> Int [hours, minutes]
+        """ expects list [hours, minutes] and returns 24 hr clock [hours, minutes] """
+        # added vars for readability
+        hours = time[0]
+        minutes = time[1]
+        
+        set_hr = (hours + int(minutes/60)) % 24
         if set_hr < 0:
             set_hr += 24
 
-        set_min = minutes%60
+        set_min = minutes % 60
         if set_min < 0:
             set_min += 60
 
-        return self.two_dig_str(set_hr) + ":" + self.two_dig_str(set_min)
+        return [set_hr, set_min]
+
+    def __clock_str(self, time = []): # -> String XX:XX
+        """ takes time as [hours, minutes] and returns string XX:XX """
+        # added vars for readability
+        hours = time[0]
+        minutes = time[1]
+        
+        return str(hours).rjust(2, '0') + ":" + str(minutes).rjust(2, '0')
     
     # init and call behavior
     def __init__(self, hours, minutes):
-        self.time = self.clock_time(hours, minutes)
+        """ create list of hours and minutes and change to 24 hour time"""
+        self.time = [hours, minutes]
+        self.time = self.__clock_time(self.time)
 
     def __str__(self):
-        return self.time
-
-    def __repr__(self):
-        return self.time
+        return self.__clock_str(self.time)
 
     def __eq__(self, other):
+        """ compare 24 hour clock time """
         return self.time == other.time
 
     def __ne__(self, other):
+        """ compare 24 hours clock time """
         return self.time != other.time
 
     # methods
-    def add(self, minutes):
-        self.time = self.clock_time(int(self.time[0:2]), int(self.time[3:]) + minutes)
-        return self.time
+    def add(self, minutes): # -> String (XX:XX)
+        """ add minutes to time and return new 24 hour clock string in form XX:XX """
+        self.time[1] += minutes
+        self.time = self.__clock_time(self.time)
+        return self.__clock_str(self.time)
     
-    def subtract(self, minutes):
-        self.time = self.clock_time(int(self.time[0:2]), int(self.time[3:]) - minutes)
-        return self.time
+    def subtract(self, minutes): # -> String (XX:XX)
+        """ subtract minutes from time and return new 24 hour clock string in form XX:XX """
+        self.time[1] -= minutes
+        self.time = self.__clock_time(self.time)
+        return self.__clock_str(self.time)
 
 ## ------
 ## main
 ## ------
+
+if __name__ == '__main__':
+    print(__doc__)
