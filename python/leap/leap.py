@@ -1,65 +1,48 @@
-## exercism assignment:     leap.py
-## description:             evaluate whether year(s) passed in are leap years
-## use:                     leap.py year [year..]
-##
-## written by (GitHub):     cmdellinger
-## written on:              10.26.2016
-## last revised:            11.02.2016
+"""
+Exercism.io assignment - leap.py
+Written by cmdellinger
+
+Usage:
+  leap.py <4-digit year>...
+
+Evaluates 4-digit year(s) and determines if they are leap years.
+
+Options:
+    -h
+"""
 
 ## ------
-## module import calls
+## import modules
 ## ------
 
-import sys
+from docopt import docopt
 
 ## ------
 ## function definitions
 ## ------
 
-## ------
-## function:    is_leap_year
-## inputs:      integer
-## outputs:     Boolean
-## purpose:     takes in the year as an integer and evaluates whether the year is a leap year to a Boolean value
-## ------
-
-def is_leap_year(year):
-    if year%4 == 0:
-        if year%100 == 0 and year%400 != 0:
-            return False
-        return True
-    return False
+def is_leap_year(year = 0000): # -> Boolean
+    """ takes in a 4-digit year and evaluates whether it is a leap year """
+    if year % 100 == 0:
+        return year % 400 == 0
+    else:
+        return year % 4 == 0
 
 ## ------
 ## main
 ## ------
 
-## test whether an argument is passed in the command line
-if len(sys.argv) > 1:
+# get list of years; list contains each year as a string
+years = docopt(__doc__)['<4-digit year>']
+# convert strings in list to integers
+years = [int(year) for year in years]
 
-    ## start with first argument
-    i = 1
-    
-    ## loop to test all arguments
-    while i < len(sys.argv):
-    
-        ## saves first argument as the year to test
-        testYear = int(sys.argv[i])
-    
-        ## building the string to return leap year determination in plain text
-        answer = str(testYear) + " is"
-        if is_leap_year(testYear) == False:
-            answer += " not"
-        answer += " a leap year"
-
-        ## print the leap year evalution in plain test
-        print(answer)
-
-        ## increment for next argument
-        i += 1
-
-## when no year is passed in the command line
-else:
-    ## send some hate
-    print("Invalid argument(s) - expected syntax:")
-    print('  leap.py year [years ...]')
+for year in years:
+    # start building the answer string to return leap year determination in plain text
+    answer = str(year) + " is"
+    # insert "not" if year is not a leap year
+    if is_leap_year(year) == False:
+        answer += " not"
+    answer += " a leap year"
+    # print the leap year evalution in plain test
+    print(answer)
