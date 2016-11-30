@@ -14,8 +14,8 @@ Options:
 ## ------
 ## import modules
 ## ------
-
-from docopt import docopt
+if __name__ == '__main__':
+    from docopt import docopt
 
 ## ------
 ## function definitions
@@ -32,17 +32,18 @@ def is_leap_year(year = 0000): # -> Boolean
 ## main
 ## ------
 
-# get list of years; list contains each year as a string
-years = docopt(__doc__)['<4-digit year>']
-# convert strings in list to integers
-years = [int(year) for year in years]
+if __name__ == '__main__':
+    # get list of years; list contains each year as a string
+    years = docopt(__doc__)['<4-digit year>']
+    # convert strings in list to integers
+    years = [int(year) for year in years]
 
-for year in years:
-    # start building the answer string to return leap year determination in plain text
-    answer = str(year) + " is"
-    # insert "not" if year is not a leap year
-    if is_leap_year(year) == False:
-        answer += " not"
-    answer += " a leap year"
-    # print the leap year evalution in plain test
-    print(answer)
+    for year in years:
+        # start building the answer string to return leap year determination in plain text
+        answer = str(year) + " is"
+        # insert "not" if year is not a leap year
+        if is_leap_year(year) == False:
+            answer += " not"
+        answer += " a leap year"
+        # print the leap year evalution in plain test
+        print(answer)
