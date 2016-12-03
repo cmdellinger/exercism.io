@@ -1,24 +1,22 @@
-## exercism assignment:     hamming.py
-## description:
-## use:
-##
-## written by (GitHub):     cmdellinger
-## written on:              11.01.2016
-## last revised:            11.08.2016
+"""
+Exercism.io assignment - hamming.py
+written by (GitHub):     cmdellinger
+
+Usage:
+   hamming.py <sequence1> <sequence2>
+
+Compares the nucleotides in sequence1 and sequence2 and reports differences
+also known as the Hamming distance.
+"""
 
 ## ------
-## module import calls
+## Exercism.io function
 ## ------
 
-# import sys
-
-## ------
-## function definitions
-## ------
-
-def distance(string1, string2):
+def distance(string1, string2): #->
+    """returns the differences (Hamming distance) between string1 and string2"""
     differences = 0
-    
+
     for i in range(len(string1)):
         if string1[i] != string2[i]:
             differences += 1
@@ -26,10 +24,13 @@ def distance(string1, string2):
     return differences
 
 ## ------
-## class definitions
+## Command-line implementation
 ## ------
+if __name__ == '__main__':
+    from docopt import docopt
 
-## ------
-## main
-## ------
+    sequence1 = docopt(__doc__)['<sequence1>']
+    sequence2 = docopt(__doc__)['<sequence2>']
 
+    hamming_distance = distance(sequence1, sequence2)
+    print("Hamming distance: %d" % hamming_distance)
