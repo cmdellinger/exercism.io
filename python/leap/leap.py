@@ -45,5 +45,5 @@ if __name__ == '__main__':
         if is_leap_year(year) == False:
             answer += " not"
         answer += " a leap year"
-        # print the leap year evalution in plain test
+        # print the leap year evalution in plain text
         print(answer)
