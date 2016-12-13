@@ -13,7 +13,7 @@ also known as the Hamming distance.
 ## Exercism.io function
 ## ------
 
-def distance(string1, string2): #->
+def distance(string1 = '', string2 = ''): # -> int
     """returns the differences (Hamming distance) between string1 and string2"""
     differences = 0
 
