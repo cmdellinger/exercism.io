@@ -12,13 +12,7 @@ Options:
 """
 
 ## ------
-## import modules
-## ------
-if __name__ == '__main__':
-    from docopt import docopt
-
-## ------
-## function definitions
+## Exercism.io solution
 ## ------
 
 def is_leap_year(year = 0000): # -> Boolean
@@ -29,10 +23,11 @@ def is_leap_year(year = 0000): # -> Boolean
         return year % 4 == 0
 
 ## ------
-## main
+## Command-line implementation
 ## ------
 
 if __name__ == '__main__':
+    from docopt import docopt
     # get list of years; list contains each year as a string
     years = docopt(__doc__)['<4-digit year>']
     # convert strings in list to integers
