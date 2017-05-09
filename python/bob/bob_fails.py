@@ -39,11 +39,15 @@ def hey(message = ''): #-> string
                
     punctuation = re.findall(r'[.?!]+', message)
     words = re.findall(u'[^\W_]+', message)
+    print punctuation
+    print words
     if len(words) == 0:
         return answers["nothing"]
-    if message.isupper():
+    if all([word.isupper() for word in words]):
         return answers["yell"]
     if len(punctuation):
+        if punctuation[-1] == '!':
+            return answers["yell"]
         if punctuation[-1] == '?':
             return answers["question"]
     return answers["other"]
@@ -52,8 +56,8 @@ def hey(message = ''): #-> string
 ## Command-line implementation
 ## ------
 
+
 # print problem test cases if call script
 
 if __name__ == '__main__':
     print hey("Let's go make out behind the gym!")
-
