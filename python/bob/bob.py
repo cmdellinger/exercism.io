@@ -3,7 +3,7 @@ Exercism.io assignment - bob.py
 Written by cmdellinger
     
 Usage:
-    bob.py <message>...
+    bob.py <'message'>...
     
     Evaluates message(s) and replies with Bob's response.
     
@@ -52,8 +52,12 @@ def hey(message = ''): #-> string
 ## Command-line implementation
 ## ------
 
-# print problem test cases if call script
-
 if __name__ == '__main__':
-    print hey("Let's go make out behind the gym!")
-
+    from docopt import docopt
+    # get list of words; list contains each word as a string
+    messages = docopt(__doc__)["<'message'>"]
+    
+    for message in messages:
+        print "message:", message
+        print "response:", hey(message)
+        print ""
