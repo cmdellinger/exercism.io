@@ -43,5 +43,3 @@ if __name__ == '__main__':
         answer += " an isogram"
         # print isogram evalution in plain text
         print(answer)
-
-
