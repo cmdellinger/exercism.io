@@ -30,6 +30,11 @@ if __name__ == '__main__':
     words = docopt(__doc__)['<word>']
     
     for word in words:
+        '''
+        """ this is shorter, but leaves an extra space in the answer """
+        # print isogram evalution in plain text
+        print word, "is", int(not(is_isogram(word)))*"not", "an isogram"
+        '''
         # start building the answer to return isogram determination in plain text
         answer = word + " is"
         # insert "not" if word is not an isogram
