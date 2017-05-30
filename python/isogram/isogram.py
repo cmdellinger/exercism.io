@@ -15,10 +15,10 @@ Options:
 ## Exercism.io solution
 ## ------
 
-def is_isogram(word = ''): #-> boolen
+def is_isogram(word = ''): #-> boolean
     ''' creates a list of only letters then sees if its the same length when duplicates are removed '''
-    characters = [letter.lower() for letter in list(word) if letter.isalpha()]
-    return len(characters) == len(list(set(characters)))
+    characters = [letter.lower() for letter in word if letter.isalpha()]
+    return len(characters) == len(set(characters))
 
 ## ------
 ## Command-line implementation
