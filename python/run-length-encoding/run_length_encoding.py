@@ -8,8 +8,12 @@ Usage:
     
 This script encodes and decodes strings of letters and spaces by changing character repeats to '<number of repeats>character'.
 Examples:
-    decode '3g2c' -> 'gggcc'
-    encode 'gggcc' -> '3g2c'
+    In[x]:  run_length_encoding.py encode 'gggcc'
+    Out[x]: 'gggcc' -> '3g2c'
+
+    In[y]:  run_length_encoding.py decode '3g2c'
+    Out[y]: '3g2c' -> 'gggcc'
+
 * Note: this script assumes that characters being encoded and decoded are letters and spaces (not numbers, etc.)
 
 Options:
