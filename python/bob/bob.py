@@ -36,16 +36,17 @@ def hey(message = ''): #-> string
                "yell": 'Whoa, chill out!',
                "nothing": 'Fine. Be that way!',
                "other": 'Whatever.'}
-               
-    punctuation = re.findall(r'[.?!]+', message)
-    words = re.findall(u'[^\W_]+', message)
-    if len(words) == 0:
+
+    # uses regular expressions to searches for words
+    if len(re.findall(u'[^\W_]+', message)) == 0:
         return answers["nothing"]
+    # checks to see if all the letter chars are capital
     if message.isupper():
         return answers["yell"]
-    if len(punctuation):
-        if punctuation[-1] == '?':
-            return answers["question"]
+    # strips ending whitespace, then checks for '?' at end
+    if message.strip().endswith('?'):
+        return answers["question"]
+    # returns default if all other conditions failed
     return answers["other"]
 
 ## ------
