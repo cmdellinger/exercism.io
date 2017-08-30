@@ -20,21 +20,22 @@ for the sequence up to the number provided.
 
 def square_of_sum(number = 0): # -> integer
     ''' returns the square of the sums of natural numbers up to input number '''
-    sum = 0
-    for integer in xrange(1, number + 1):
-        sum += integer
-    return sum**2
+    total = 0
+    for integer in xrange(number + 1):
+        total += integer
+    return total**2
 
 def sum_of_squares(number = 0): # -> integer
     ''' returns the sum of the squares of natural numbers up to input number '''
-    sum = 0
-    for integer in xrange(1, number + 1):
-        sum += integer**2
-    return sum
+    total = 0
+    for integer in xrange(number + 1):
+        total += integer**2
+    return total
 
 def difference(number = 0): # -> integer
     ''' returns the difference between the sum of squares and the square of the sum '''
-    return abs(sum_of_squares(number) - square_of_sum(number))
+    # square_of_sum is always greater than sum_of_squares
+    return square_of_sum(number) - sum_of_squares(number)
 
 ## ------
 ## Command-line implementation
