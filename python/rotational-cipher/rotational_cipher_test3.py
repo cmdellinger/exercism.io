@@ -1,6 +1,6 @@
 import unittest
 
-import rotational_cipher2 as rotational_cipher
+import rotational_cipher3 as rotational_cipher
 
 
 # test cases adapted from `x-common//canonical-data.json` @ version: 1.0.0
