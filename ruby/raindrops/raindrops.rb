@@ -30,9 +30,7 @@ class Raindrops
       # return passed number if no relevant factors
       return input_number.to_s if factors.length == 0
       # build raindrops
-      raindrops = ""
-      factors.each {|factor| raindrops << @@Raindrop_table[factor]}
-      raindrops
+      factors.collect{|factor| @@Raindrop_table[factor]}.reduce(:+)
   end
 end
 
