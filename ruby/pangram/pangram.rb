@@ -1,18 +1,18 @@
-#### pangram ####
-#
-#   Pangram class with class method pangram?()
-
+# @title pangram
+# @author cmdellinger
 class Pangram
-  def self.pangram?(phrase) #-> boolean
+  # Determines whether a phrase is a pangram. A pangram is a
+  # sentence that contains all the letters of the alphabet.
+  #
+  # @param phrase [String] sentence to be tested as a pangram.
+  # @return [Boolean] true or false depending on pangram status.
+  def self.pangram?(phrase)
     ('a'..'z').to_a == phrase.gsub(/[^a-zA-Z]/, '').downcase.split('').sort.uniq
   end
 end
 
-#### BookKeeping Version ####
-#
-#   the version of the tests that are being run
-#
-
+# BookKeeping Version
 module BookKeeping
-    VERSION = 5 # Where the version number matches the one in the test.
+   # the version of the tests that are being run
+   VERSION = 5
 end
