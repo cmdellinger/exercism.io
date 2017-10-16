@@ -3,7 +3,6 @@
 class Gigasecond
   # Adds a gigasecond (10^9 seconds) to the passed Time object.
   #
-  #
   # @param time [Time] starting time to add a gigasecond to.
   # @return [Time] input time plus a gigasecond.
   def self.from(time = Time.now.utc)
