@@ -1,39 +1,34 @@
-#### difference_of_squares ####
-#
-#   Squares class
-#
-#   Instance Methods:
-#     new(<input_number>)
-#       initializes instance with number to be used in calculations
-#
-#     sum_of_squares()
-#       returns sum of squares
-#
-#     square_of_sum()
-#       returns square of sums
-#
-#     difference()
-#       returns difference between square of sums and sum of squares
-#
-#     accessor methods: number
-#       change or check value of input number
-
+# @title difference_of_squares
+# @author cmdellinger
 
 class Squares
-  attr_accessor :number
-
+  # Creates instance range sequence to be used in calculations.
+  #
+  # @param input_number [Integer] maximum of sequence from 1 to input_number.
   def initialize(input_number)
-    @number = input_number
+    @number_range = (1..input_number)
   end
 
+  # Squares the sum of integers in the sequence of instance range.
+  # Sequence range: 1 to input_number.
+  #
+  # @return [Integer] sum of the squares in object's range.
   def sum_of_squares
-    (1..@number).inject{|memo, n| memo + n**2}
+    @number_range.inject{|memo, n| memo + n**2}
   end
   
+  # Squares the sum of integers in the sequence of instance range.
+  # Sequence range: 1 to input_number.
+  #
+  # @return [Integer] sum of the squares in object's range.
   def square_of_sum
-    (1..@number).sum**2
+    @number_range.sum**2
   end
   
+  # Calculates the difference between the square of sums and the sum of squares
+  # for the instance range.
+  #
+  # @return [Integer] difference between the square of sums and the sum of squares.
   def difference
     # square of sums will always be bigger
     square_of_sum - sum_of_squares
