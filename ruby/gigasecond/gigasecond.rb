@@ -1,27 +1,19 @@
-#### gigasecond ####
-#
-#   Gigasecond class with class method from()
-#       from() adds a gigaescond or 10^9 seconds to
-#       the time that was passed into it. if nothing
-#       is passed, it defaults to now.
-#
-#   Usage:
-#       Gigasecond.from(<Time instance>)
-#
-#   Output: Time instance
-
+# @title gigasecond
+# @author cmdellinger
 class Gigasecond
-    def self.from(time = Time.now.utc)
-        # Time + numeric -> Time
-        return time + 10**9
-    end
+  # Adds a gigasecond (10^9 seconds) to the passed Time object.
+  #
+  #
+  # @param time [Time] starting time to add a gigasecond to.
+  # @return [Time] input time plus a gigasecond.
+  def self.from(time = Time.now.utc)
+    # Time + numeric -> Time
+    time + 10**9
+  end
 end
 
-#### BookKeeping Version ####
-#
-#   the version of the tests that are being run
-#
-
+# BookKeeping Version
 module BookKeeping
-    VERSION = 6 # Where the version number matches the one in the test.
+    # the version of the tests that are being run
+    VERSION = 6
 end
