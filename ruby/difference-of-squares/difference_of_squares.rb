@@ -35,11 +35,8 @@ class Squares
   end
 end
 
-#### BookKeeping Version ####
-#
-#   the version of the tests that are being run
-#
-
+# BookKeeping Version
 module BookKeeping
+  # the version of the tests that are being run
   VERSION = 4 # Where the version number matches the one in the test.
 end
