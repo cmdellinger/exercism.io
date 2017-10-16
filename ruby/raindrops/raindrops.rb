@@ -1,30 +1,19 @@
-#### raindrops ####
-#
-#   Complement class with class method convert()
-#       convert() takes in an integer and returns a string
-#       of raindrops. The string contains a concatenation of
-#       "Pling", "Plang", "Plong" if the integer has factors
-#       3, 5, 7 respectively. If the integer has none of those
-#       factors, the integer is returned as a string.
-#
-#   Raindrops.convert(<input_number>)
-#
-#   Parameters:
-#       <input_number> : integer
-#           any integer to be converted into "raindrops"
-#
-#   Returns:
-#       <raindrops> : string
-#           a concatenation of "Pling", "Plang", and "Plong"
-#           for factors of 3, 5, 7 respectively. if no relevant
-#           factors, then passed number is returned as a string.
-
+# @title difference_of_squares
+# @author cmdellinger
 class Raindrops
   @@Raindrop_table = {3=> 'Pling',
                       5=> 'Plang',
                       7=> 'Plong'}
-
-  def self.convert(input_number = 0) #-> ""
+  # Generates a string of raindrops that contains a concatenation
+  # of "Pling", "Plang", "Plong" if the integer has factors 3, 5, 7
+  # respectively. If the integer has none of those factors, the
+  # integer is returned as a string.
+  #
+  # @param input_number [Integer] number to be converted into "raindrops"
+  # @return [String] a concatenation of "Pling", "Plang", and "Plong"
+  #   for factors of 3, 5, 7 respectively. if no relevant factors,
+  #   then passed number is returned as a string.
+  def self.convert(input_number = 0)
       # check for relevant factors
       factors = @@Raindrop_table.keys.find_all {|integer| input_number%integer == 0}
       # return passed number if no relevant factors
@@ -34,11 +23,8 @@ class Raindrops
   end
 end
 
-#### BookKeeping Version ####
-#
-#   the version of the tests that are being run
-#
-
+# BookKeeping Version
 module BookKeeping
-  VERSION = 3 # Where the version number matches the one in the test.
+    # the version of the tests that are being run
+    VERSION = 3
 end
