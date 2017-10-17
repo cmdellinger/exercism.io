@@ -14,7 +14,7 @@ class Squares
   #
   # @return [Integer] sum of the squares in object's range.
   def sum_of_squares
-    @number_range.inject{|memo, n| memo + n**2}
+    @number_range.sum {|n| n**2}
   end
   
   # Squares the sum of integers in the sequence of instance range.
