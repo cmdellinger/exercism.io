@@ -7,7 +7,8 @@ class Pangram
   # @param phrase [String] sentence to be tested as a pangram.
   # @return [Boolean] true or false depending on pangram status.
   def self.pangram?(phrase)
-    ('a'..'z').to_a == phrase.gsub(/[^a-zA-Z]/, '').downcase.split('').sort.uniq
+    phrase.downcase!
+    ('a'..'z').all? {|ch| phrase.include?(ch)}
   end
 end
 
