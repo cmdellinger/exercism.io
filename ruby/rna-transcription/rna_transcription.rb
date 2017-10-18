@@ -2,52 +2,40 @@
 #
 #   Complement class with class method of_dna()
 #       of_dna() takes in a DNA sequence as a string and returns
-#       the complement RNA sequence. of_dna expects a string
-#       and changes G, C, T, A to C, G, A, U respectively.
+#       the complement RNA sequence. of_dna expects a string and
+#       changes G, C, T, A to C, G, A, U respectively. The string
+#       must be sequences of G,C,T,A only, else an empty string
+#       will be returned.
 #
-#   Complement.of_dna(<"DNA sequence">, allow_other = false, ignore_other = true)
+#   Complement.of_dna(<"DNA sequence">)
 #
 #   Parameters:
 #       <"DNA sequence"> : string
-#           string of characters to be convertered
-#
-#       allow_other : bool (default: false)
-#           boolean to allow other characters than DNA nucleotides to be processed.
-#           if other character not allowed, of_dna returns '' for entire string if
-#           any characters aren't DNA nucleotides (G, C, T, A).
-#
-#       ignore_other: bool (default: true)
-#           boolean to to pass non-nucleotides back unchanged.
-#           if false, all non-nucleotides are deleted from the sequence.
+#           string of characters to be convertered.
+#           must be sequences of G,C,T,A only.
 #
 #   Returns:
 #       <"RNA sequence"> : string
-#           string with all the G, C, T, A changed to C, G, A, U
-
+#           string with all the G, C, T, A changed to C, G, A, U;
+#           or '' for non-compliant "DNA sequence".
 
 class Complement
-  @@translation_table = {'G': 'C',
-                         'C': 'G',
-                         'T': 'A',
-                         'A': 'U'}
-    
-  def self.of_dna(dna_sequence = "", allow_other = false, ignore_other = true) #-> ""
-    if allow_other || dna_sequence.chars.all? {|nucleotide| @@translation_table.include? nucleotide.to_sym}
-      return dna_sequence.chars.map {|nucleotide| translate(nucleotide, ignore_other)}.join
-    else
-      return ''
-    end
-  end
+  @@DNA_to_RNA_table = {'G'=> 'C',
+                        'C'=> 'G',
+                        'T'=> 'A',
+                        'A'=> 'U'}
 
-  def self.translate(nucleotide = '', ignore_other = true)
-    if ignore_other || (@@translation_table.include? nucleotide.to_sym)
-      return @@translation_table[nucleotide.to_sym]
-    else
-      return nucleotide
+  def self.of_dna(dna_sequence = "") #-> ""
+    rna_sequence = ""
+    dna_sequence.chars.each do |nucleotide|
+      begin
+        rna_sequence << @@DNA_to_RNA_table[nucleotide]
+      rescue
+        return ''
+      end
     end
+    rna_sequence
   end
-
-  private_class_method :translate
 
 end
 
