@@ -1,4 +1,4 @@
-# @title pangram
+# @title sieve
 # @author cmdellinger
 class Sieve
   # @param input_number [Integer] maximum of range to be tested for primes.
