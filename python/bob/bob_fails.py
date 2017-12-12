@@ -3,7 +3,7 @@ Exercism.io assignment - bob.py
 Written by cmdellinger
     
 Usage:
-    bob.py <'message'>...
+    bob.py <message>...
     
     Evaluates message(s) and replies with Bob's response.
     
@@ -36,29 +36,28 @@ def hey(message = ''): #-> string
                "yell": 'Whoa, chill out!',
                "nothing": 'Fine. Be that way!',
                "other": 'Whatever.'}
-
-    # uses regular expressions to searches for words
-    if len(re.findall(u'[^\W_]+', message)) == 0:
+               
+    punctuation = re.findall(r'[.?!]+', message)
+    words = re.findall(u'[^\W_]+', message)
+    print punctuation
+    print words
+    if len(words) == 0:
         return answers["nothing"]
-    # checks to see if all the letter chars are capital
-    if message.isupper():
+    if all([word.isupper() for word in words]):
         return answers["yell"]
-    # strips ending whitespace, then checks for '?' at end
-    if message.strip().endswith('?'):
-        return answers["question"]
-    # returns default if all other conditions failed
+    if len(punctuation):
+        if punctuation[-1] == '!':
+            return answers["yell"]
+        if punctuation[-1] == '?':
+            return answers["question"]
     return answers["other"]
 
 ## ------
 ## Command-line implementation
 ## ------
 
+
+# print problem test cases if call script
+
 if __name__ == '__main__':
-    from docopt import docopt
-    # get list of words; list contains each word as a string
-    messages = docopt(__doc__)["<'message'>"]
-    
-    for message in messages:
-        print "message:", message
-        print "response:", hey(message)
-        print ""
+    print hey("Let's go make out behind the gym!")
