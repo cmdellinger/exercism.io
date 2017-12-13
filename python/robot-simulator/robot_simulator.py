@@ -9,28 +9,12 @@ Implementation of Robot class that moves a robot along coordinates according to
 See README file for more detailed information.
 """
 
-class Coordinates(object):
-    ''' Coordinates class:
-        Sole reason is so coordinates are added pairwise.
-    '''
-    def __init__(self, location = [0,0]):
-        self.location = location
-    def __add__(self, other):
-        return Coordinates([x+y for x,y in zip(self.location, other.location)])
-    def __eq__(self, other):
-        try:
-            return self.location == other.location
-        except:
-            return tuple(self.location) == other
-    def __str__(self):
-        return str(tuple(self.location))
-
 # Globals for the bearings
 # Change the values as you see fit
-EAST = Coordinates([1,0])
-NORTH = Coordinates([0,1])
-WEST = Coordinates([-1,0])
-SOUTH = Coordinates([0,-1])
+EAST = (1,0)
+NORTH = (0,1)
+WEST = (-1,0)
+SOUTH = (0,-1)
 
 class Robot(object):
     ''' Robot class:
@@ -44,7 +28,7 @@ class Robot(object):
     '''
     
     def __init__(self, bearing=NORTH, x=0, y=0):
-        self.coordinates = Coordinates([x,y])
+        self.coordinates = (x,y)
         self.bearing = bearing
 
     def change_bearing(self, rotations = 0):
@@ -67,7 +51,7 @@ class Robot(object):
 
     def advance(self):
         ''' progresses robot in direction of bearing '''
-        self.coordinates += self.bearing
+        self.coordinates = tuple(x+y for x,y in zip(self.coordinates, self.bearing))
 
     def simulate(self, operations = ''):
         ''' translates string of instructions into movements '''
